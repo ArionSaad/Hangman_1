@@ -3,6 +3,7 @@ Make sure you complete all the TODOs in this file.
 The prints have to contain the same text as indicated, don't add any more prints,
 or you will get 0 for this assignment.
 '''
+
 import random
 
 class Hangman:
@@ -58,6 +59,7 @@ class Hangman:
         self.list_letters = [] # initialises the list of letters the player will guess 
         print(f"The mistery word has {self.num_letters} characters") # gives the player a hint of the number of unique letters in the list
         print(self.word_guessed) # presents the player with the word_guessed list 
+        self.draw_man()
         pass
 
     def check_letter(self, letter) -> None:
@@ -83,6 +85,7 @@ class Hangman:
             print(f'Sorry, {letter} is not in the word.') # informs the player of their wrongdoing 
             self.num_lives -= 1 # reduces the player's number of chances by 1
             print(f'You have {self.num_lives} lives left.') # informs the player the number of chances left
+            self.draw_man()
         elif self.word_as_list.count(letter) >= 1: # if the letter is in the word
             print(f'Nice! {letter} is in the word!') # pats the player on the back
             self.num_letters -= 1 # reduces the number of unique letter by 1
@@ -123,6 +126,39 @@ class Hangman:
             print("Congratulations! You won!") # gives the player a sense of accomplishment  
         elif self.num_lives == 0: # this condition will be met if the player runs out of chances
             print(f"You lost! The word was {self.word}") # gives the player a sense of frustration     
+        pass
+
+    def draw_man(self): # this is to visualise the hangman
+        h_u = '____________'
+        h_s = '| '
+        h_l = '|____'
+        h_4 = '|          |'
+        h_3 = '|          O'
+        h_2 = '|         /|\ '
+        h_1 = '|          |'
+        h_0 = '|         / \ '
+        print(h_u)
+        if self.num_lives <= 4:
+            print(h_4)
+        else:
+            print(h_s)
+        if self.num_lives <=3:
+            print(h_3)
+        else:
+            print(h_s)
+        if self.num_lives <= 2:
+            print(h_2)
+        else: 
+            print (h_s)
+        if self.num_lives <= 1:
+            print(h_1)
+        else:
+            print(h_s)
+        if self.num_lives <= 0:
+            print(h_0)
+        else:
+            print(h_s)
+        print(h_l)
         pass
 
 def play_game(word_list):

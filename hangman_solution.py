@@ -59,7 +59,7 @@ class Hangman:
         self.list_letters = [] # initialises the list of letters the player will guess 
         print(f"The mistery word has {self.num_letters} characters") # gives the player a hint of the number of unique letters in the list
         print(self.word_guessed) # presents the player with the word_guessed list 
-        self.draw_man()
+        self.draw_man() # visualises the hangman
         pass
 
     def check_letter(self, letter) -> None:
@@ -85,7 +85,7 @@ class Hangman:
             print(f'Sorry, {letter} is not in the word.') # informs the player of their wrongdoing 
             self.num_lives -= 1 # reduces the player's number of chances by 1
             print(f'You have {self.num_lives} lives left.') # informs the player the number of chances left
-            self.draw_man()
+            self.draw_man() # visualises the hangman slowly getting hanged
         elif self.word_as_list.count(letter) >= 1: # if the letter is in the word
             print(f'Nice! {letter} is in the word!') # pats the player on the back
             self.num_letters -= 1 # reduces the number of unique letter by 1
@@ -111,6 +111,7 @@ class Hangman:
         # TODO 1: The letter has to comply with the following criteria: It has to be a single character. If it is not, print "Please, enter just one character"
         # TODO 2. It has to be a letter that has not been tried yet. Use the list_letters attribute to check this. If it has been tried, print "{letter} was already tried".
         # TODO 3: If the letter is valid, call the check_letter method
+
         while self.num_letters >= 1 and self.num_lives >= 1: # a loop that keeps asking the player for a letter until they either run out of chances of completes the word
             letter = input("Guess a letter") # assigns the guessed letter to a variable 
             if len(letter) > 1: # checks if it is a single letter input
@@ -129,14 +130,14 @@ class Hangman:
         pass
 
     def draw_man(self): # this is to visualise the hangman
-        h_u = '____________'
+        h_u = '_________'
         h_s = '| '
         h_l = '|____'
-        h_4 = '|          |'
-        h_3 = '|          O'
-        h_2 = '|         /|\ '
-        h_1 = '|          |'
-        h_0 = '|         / \ '
+        h_4 = '|       |'
+        h_3 = '|       O'
+        h_2 = '|      /|\ '
+        h_1 = '|       |'
+        h_0 = '|      / \ '
         print(h_u)
         if self.num_lives <= 4:
             print(h_4)
